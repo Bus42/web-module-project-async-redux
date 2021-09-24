@@ -1,37 +1,31 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import { useAxios } from "./hooks";
-import { BASE_URL } from "./constants/index";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "./components/Header";
+import Characters from "./components/Characters";
+import Welcome from "./components/Welcome";
+// import Episodes from "./components/Episodes";
+// import Locations from "./components/Locations";
 
 function App() {
-  const [data, setData] = useState();
-
-  const { response, loading, error } = useAxios({
-    method: "get",
-    url: BASE_URL.characters,
-  });
-
-  useEffect(() => {
-    if (response !== null) {
-      setData(response);
-    }
-  }, [response]);
-
   return (
     <div className="App">
-      <h1>App Component</h1>
-      {loading ? (
-        <p>...loading</p>
-      ) : (
-        <div>
-          {error && (
-            <div>
-              <p>{error.message}</p>
-            </div>
-          )}
-          <div>{data && <p>{data.info.count} results</p>}</div>
-        </div>
-      )}
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/characters">
+            <Characters />
+          </Route>
+          {/* <Route path="/episodes">
+            <Episodes />
+          </Route>
+          <Route path="/locations">
+            <Locations />
+          </Route> */}
+          <Route path="/" >
+            <Welcome />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

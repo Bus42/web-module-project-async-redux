@@ -1,6 +1,7 @@
 # Rick and Morty API Project
 
 ## NPM Packages
+* react-router-dom
 * axios
 * redux
 * react-redux
