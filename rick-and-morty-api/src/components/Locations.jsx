@@ -1,12 +1,13 @@
 import React from "react";
-import { BASE_URL } from "../constants";
-import { useAxios } from "../hooks";
+import { connect } from "react-redux";
+// import { BASE_URL } from "../constants";
+// import { useAxios } from "../hooks";
 
-const Locations = () => {
-  const { response, error } = useAxios({
-    method: "get",
-    url: BASE_URL.locations,
-  });
+const Locations = ({ response, error, loading }) => {
+  // const { response, error } = useAxios({
+  //   method: "get",
+  //   url: BASE_URL.locations,
+  // });
 
   return (
     <div>
@@ -23,11 +24,21 @@ const Locations = () => {
         ))
       ) : error ? (
         <p>{error.message}</p>
-      ) : (
+      ) : loading ? (
         <p>...loading</p>
+      ) : (
+        <p>something ain't right</p>
       )}
     </div>
   );
 };
 
-export default Locations;
+const mapStateToProps = (state) => {
+  return {
+    response: state.response,
+    error: state.error,
+    loading: state.loading,
+  };
+};
+
+export default connect(mapStateToProps)(Locations);

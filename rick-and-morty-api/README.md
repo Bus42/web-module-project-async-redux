@@ -6,3 +6,5 @@
 * redux
 * react-redux
 * thunk
+* redux-thunk
+* redux-logger

@@ -1,12 +1,13 @@
 import React from "react";
-import { BASE_URL } from "../constants";
-import { useAxios } from "../hooks";
+// import { BASE_URL } from "../constants";
+// import { useAxios } from "../hooks";
+import { connect } from "react-redux";
 
-const Characters = () => {
-  const { response, error } = useAxios({
-    method: "get",
-    url: BASE_URL.characters,
-  });
+const Characters = ({ response, error, loading }) => {
+  // const { response, error } = useAxios({
+  //   method: "get",
+  //   url: BASE_URL.characters,
+  // });
 
   return (
     <div>
@@ -28,11 +29,22 @@ const Characters = () => {
         ))
       ) : error ? (
         <p>{error.message}</p>
-      ) : (
+      ) : loading ? (
         <p>...loading</p>
+      ) : (
+        <p>something ain't right</p>
       )}
     </div>
   );
 };
 
-export default Characters;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    response: state.response,
+    error: state.error,
+    loading: state.loading,
+  };
+};
+
+export default connect(mapStateToProps)(Characters);
