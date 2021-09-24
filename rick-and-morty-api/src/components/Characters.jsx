@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BASE_URL } from "../constants";
 import { useAxios } from "../hooks";
 
-const Characters = (props) => {
-  const [data, setData] = useState();
-
-  const { response, loading, error } = useAxios({
+const Characters = () => {
+  const { response, error } = useAxios({
     method: "get",
     url: BASE_URL.characters,
   });
-
-  useEffect(() => {
-    if (response !== null) {
-      setData(response);
-    }
-  }, [response]);
 
   return (
     <div>

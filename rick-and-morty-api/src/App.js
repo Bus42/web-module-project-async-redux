@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Characters from "./components/Characters";
 import Welcome from "./components/Welcome";
-// import Episodes from "./components/Episodes";
-// import Locations from "./components/Locations";
+import Episodes from "./components/Episodes";
+import Locations from "./components/Locations";
 
 function App() {
   return (
@@ -15,13 +15,13 @@ function App() {
           <Route path="/characters">
             <Characters />
           </Route>
-          {/* <Route path="/episodes">
+          <Route path="/episodes">
             <Episodes />
           </Route>
           <Route path="/locations">
             <Locations />
-          </Route> */}
-          <Route path="/" >
+          </Route>
+          <Route path="/">
             <Welcome />
           </Route>
         </Switch>
