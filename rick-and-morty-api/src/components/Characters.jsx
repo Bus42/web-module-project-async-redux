@@ -1,13 +1,25 @@
-import React from "react";
-// import { BASE_URL } from "../constants";
-// import { useAxios } from "../hooks";
+import React, { useEffect } from "react";
+import { BASE_URL } from "../constants";
+import { useAxios } from "../hooks";
 import { connect } from "react-redux";
+import {
+  fetchLoading,
+  fetchSuccess,
+  fetchError,
+} from "../actions/fetchActions";
 
-const Characters = ({ response, error, loading }) => {
-  // const { response, error } = useAxios({
-  //   method: "get",
-  //   url: BASE_URL.characters,
-  // });
+const Characters = ({ fetchLoading, fetchSuccess, fetchError }) => {
+  
+  const { response, error, loading } = useAxios({
+    method: "get",
+    url: BASE_URL.characters,
+  });
+
+  useEffect(() => {
+    fetchLoading();
+    response && fetchSuccess(response);
+    error && fetchError(error);
+  }, [fetchLoading, fetchSuccess, fetchError, response, error]);
 
   return (
     <div>
@@ -47,4 +59,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Characters);
+export default connect(mapStateToProps, {
+  fetchLoading,
+  fetchSuccess,
+  fetchError,
+})(Characters);
