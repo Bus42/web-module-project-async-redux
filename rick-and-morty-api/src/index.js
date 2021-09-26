@@ -5,10 +5,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import reducer from "./reducers";
 import { applyMiddleware } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
+import reducer from "./reducers";
 
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 

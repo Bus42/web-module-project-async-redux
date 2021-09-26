@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import { BASE_URL } from "../constants";
 import { connect } from "react-redux";
-import { fetchData } from "../actions/fetchActions";
+import { fetchData } from "../actions";
 
-const Characters = ({ fetchData }) => {
+const Characters = ({ response, error, loading }) => {
 
   useEffect(() => {
     fetchData(BASE_URL.characters);
-  });
+  }, []);
 
   return (
     <div>
       <h2>Characters</h2>
-      {/* {response ? (
+      {response !== null ? (
         response.results.map((character) => (
           <div className="character" key={character.id}>
             <h3>{character.name}</h3>
@@ -25,13 +25,13 @@ const Characters = ({ fetchData }) => {
             </p>
           </div>
         ))
-      ) : error ? (
+      ) : error !== null ? (
         <p>{error.message}</p>
       ) : loading ? (
         <p>...loading</p>
       ) : (
         <p>something ain't right</p>
-      )} */}
+      )}
     </div>
   );
 };
