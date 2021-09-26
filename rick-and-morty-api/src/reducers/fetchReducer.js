@@ -10,13 +10,6 @@ const initialState = {
   error: null,
 };
 
-const fetchData = () => {
-    // start loading
-    // make API call
-    // success
-    // error
-}
-
 const fetchReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_LOADING:
