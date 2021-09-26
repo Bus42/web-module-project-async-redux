@@ -22,7 +22,6 @@ export const fetchData = (url) => {
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data);
         dispatch(fetchSuccess(res.data));
       })
       .catch((err) => {

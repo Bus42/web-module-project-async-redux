@@ -7,8 +7,9 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log(state);
-  console.log(action.type);
+  console.group('%creducer', 'color: red')
+  console.log("State :", state);
+  console.log("Action type", action.type);
   switch (action.type) {
     case FETCH_LOADING:
       return {
@@ -29,6 +30,7 @@ const reducer = (state = initialState, action) => {
       };
     default:
       console.log("default");
+      console.groupEnd("reducer")
       return state;
   }
 };

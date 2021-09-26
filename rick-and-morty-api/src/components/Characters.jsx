@@ -11,7 +11,7 @@ const Characters = ({ response, error, loading }) => {
   return (
     <div>
       <h2>Characters</h2>
-      {response !== null ? (
+      {response ? (
         response.results.map((character) => (
           <div className="character" key={character.id}>
             <h3>{character.name}</h3>
@@ -24,7 +24,7 @@ const Characters = ({ response, error, loading }) => {
             </p>
           </div>
         ))
-      ) : error !== null ? (
+      ) : error ? (
         <p>{error.message}</p>
       ) : loading ? (
         <p>...loading</p>
@@ -36,7 +36,6 @@ const Characters = ({ response, error, loading }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     response: state.response,
     error: state.error,
