@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-// import { BASE_URL } from "../constants";
+import { BASE_URL } from "../constants";
 // import { useAxios } from "../hooks";
+import { fetchData } from "../actions";
 
 const Locations = ({ response, error, loading }) => {
   // const { response, error } = useAxios({
   //   method: "get",
   //   url: BASE_URL.locations,
   // });
+
+  useEffect(() => {
+    fetchData(BASE_URL.locations);
+  }, []);
 
   return (
     <div>
@@ -41,4 +46,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Locations);
+export default connect(mapStateToProps, { fetchData })(Locations);

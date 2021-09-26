@@ -1,16 +1,14 @@
-import {
-  FETCH_LOADING,
-  FETCH_SUCCESS,
-  FETCH_ERROR,
-} from "../actions";
+import { FETCH_LOADING, FETCH_SUCCESS, FETCH_ERROR } from "../actions";
 
 const initialState = {
   response: null,
   error: null,
-  loading: true,
+  loading: false,
 };
 
 const reducer = (state = initialState, action) => {
+  console.log(state);
+  console.log(action.type);
   switch (action.type) {
     case FETCH_LOADING:
       return {
@@ -30,6 +28,7 @@ const reducer = (state = initialState, action) => {
         error: action.payload,
       };
     default:
+      console.log("default");
       return state;
   }
 };

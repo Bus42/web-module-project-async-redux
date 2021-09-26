@@ -8,8 +8,8 @@ export const fetchLoading = () => {
   return { type: FETCH_LOADING };
 };
 
-export const fetchSuccess = (response) => {
-  return { type: FETCH_SUCCESS, payload: response };
+export const fetchSuccess = (data) => {
+  return { type: FETCH_SUCCESS, payload: data };
 };
 
 export const fetchError = (error) => {
@@ -18,15 +18,15 @@ export const fetchError = (error) => {
 
 export const fetchData = (url) => {
   return (dispatch) => {
-    // dispatch(fetchLoading())
+    dispatch(fetchLoading());
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         dispatch(fetchSuccess(res.data));
       })
       .catch((err) => {
-        dispatch(fetchError(err.message));
+        dispatch(fetchError(err.error));
       });
   };
 };

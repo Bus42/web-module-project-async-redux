@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { fetchData } from "../actions";
 
 const Characters = ({ response, error, loading }) => {
-
   useEffect(() => {
     fetchData(BASE_URL.characters);
   }, []);
