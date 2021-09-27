@@ -17,8 +17,8 @@ export const fetchError = (error) => {
 };
 
 export const fetchData = (url) => (dispatch) => {
-  dispatch(fetchLoading());
   console.log(url);
+  dispatch(fetchLoading());
   axios
     .get(url)
     .then((res) => {

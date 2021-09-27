@@ -8,3 +8,4 @@
 * thunk
 * redux-thunk
 * redux-logger
+* materialize-css

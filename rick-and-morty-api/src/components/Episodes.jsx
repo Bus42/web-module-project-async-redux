@@ -5,20 +5,24 @@ import { fetchData } from "../actions";
 
 const Episodes = ({ response, error, loading, fetchData }) => {
   useEffect(() => {
-    fetchData(BASE_URL.episodes);
+    setTimeout(() => {
+      fetchData(BASE_URL.episodes);
+    }, 1500);
   }, [fetchData]);
 
   return (
     <div>
-      <h2>Episodes</h2>
+      <h2 className="center-align">Episodes</h2>
       {response ? (
-        response.results.map((episode) => (
-          <div className="episode" key={episode.id}>
+        <ul className="collection">
+        {response.results.map((episode) => (
+          <li className="collection-item" key={episode.id}>
             <h3>{episode.name}</h3>
             <p>{episode.episode}</p>
             <p>Air Date: {episode.air_date}</p>
-          </div>
-        ))
+          </li>
+        ))}
+        </ul>
       ) : error ? (
         <p>{error.message}</p>
       ) : loading ? (
