@@ -1,18 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { BASE_URL } from "../constants";
-// import { useAxios } from "../hooks";
 import { fetchData } from "../actions";
 
-const Locations = ({ response, error, loading }) => {
-  // const { response, error } = useAxios({
-  //   method: "get",
-  //   url: BASE_URL.locations,
-  // });
-
+const Locations = ({ response, error, loading, fetchData }) => {
   useEffect(() => {
     fetchData(BASE_URL.locations);
-  }, []);
+  }, [fetchData]);
 
   return (
     <div>
@@ -23,8 +17,6 @@ const Locations = ({ response, error, loading }) => {
             <h3>{location.name}</h3>
             <p>Type: {location.type}</p>
             <p>Dimension: {location.dimension}</p>
-            {/* add logic to get detail view of location */}
-            {/* add logic to click on location.resident and get character detail view */}
           </div>
         ))
       ) : error ? (

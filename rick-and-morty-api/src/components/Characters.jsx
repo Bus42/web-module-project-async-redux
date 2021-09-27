@@ -3,10 +3,11 @@ import { BASE_URL } from "../constants";
 import { connect } from "react-redux";
 import { fetchData } from "../actions";
 
-const Characters = ({ response, error, loading }) => {
+const Characters = ({ response, error, loading, fetchData }) => {
+  
   useEffect(() => {
     fetchData(BASE_URL.characters);
-  }, []);
+  }, [fetchData]);
 
   return (
     <div>

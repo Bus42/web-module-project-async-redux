@@ -16,16 +16,15 @@ export const fetchError = (error) => {
   return { type: FETCH_ERROR, payload: error };
 };
 
-export const fetchData = (url) => {
-  return (dispatch) => {
-    dispatch(fetchLoading());
-    axios
-      .get(url)
-      .then((res) => {
-        dispatch(fetchSuccess(res.data));
-      })
-      .catch((err) => {
-        dispatch(fetchError(err.error));
-      });
-  };
+export const fetchData = (url) => (dispatch) => {
+  dispatch(fetchLoading());
+  console.log(url);
+  axios
+    .get(url)
+    .then((res) => {
+      dispatch(fetchSuccess(res.data));
+    })
+    .catch((err) => {
+      dispatch(fetchError(err));
+    });
 };
